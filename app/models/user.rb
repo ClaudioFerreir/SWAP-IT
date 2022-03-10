@@ -5,7 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :stuffs, dependent: :destroy
-  has_many :likes, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :matches, through: :stuffs, dependent: :destroy
+
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
